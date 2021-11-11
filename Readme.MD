@@ -33,10 +33,10 @@
 - I hover over the login button for Viewpoint and the button changes color from blue to orange
 - On the Viewpoint login page I can see the "GlassLewis Viewpoint" picture
 - The login functionality on the Viewpoint page is aligned in the middle
-- The 'Sign in' button is blue
-- The 'Forgot your password?' button is grey
-- The 'The fields USERNAME and PASSWORD are required.' message text color is white and the background color of the text is black
-- The 'Invalid username or password' message text color is white and the background color of the text is black
+- On the Viewpoint login the 'Sign in' button is blue
+- On the Viewpoint login the 'Forgot your password?' button is grey
+- On the Viewpoint login the 'The fields USERNAME and PASSWORD are required.' message text color is white and the background color of the text is black
+- On the Viewpoint login the 'Invalid username or password' message text color is white and the background color of the text is black
 
 # Question 2 - Automation (Answer)
 
@@ -46,13 +46,6 @@
 - Pycharm (IDEA)
 - Docker
 
-## How to run the project with different configuration
-### How to run the project with Cypress
-### How to run the project with headless mode
-### How to run the project with Chrome
-### How to run the project with Firefox
-
-
 ## Prerequisite:
 
 - Install nodejs and npm from the official website
@@ -61,25 +54,62 @@
   ```commandline
   docker pull cypress/included:8.7.0  
   ```
-- This includes two browsers(Chrome and Firefox) and the most important dependencies
+ - This includes two browsers(Chrome and Firefox) and the most important dependencies
 - With terminal go into the project folder and type
   - npm install --save-dev cypress 
-    - This will create a sample project
+    - This will create a sample project for cypress
     - I deleted the unused files
-This will create my docker image:
+## How to run the project with different configuration
 
+### How to run the project with Cypress
+1.) Desktop application
+- Download the cypress application from the official website
+- Open the project with the application
+
+2.) With npm and commandline
+- With the terminal navigate into the project folder
+- type the following, and it will open the cypress application:
+```commandline
+npx cypress run
+```
+
+### How to run the project with headless mode
+- With the terminal navigate into the project folder and type:
+```commandline
+docker run -it -v $PWD:/e2e -w /e2e cypress/included:8.7.0
+```
+
+### How to run the project with Chrome
+- With the terminal navigate into the project folder and type:
+```commandline
+docker run -it -v $PWD:/e2e -w /e2e cypress/included:8.7.0 --browser firefox
+```
+
+### How to run the project with Firefox
+- With the terminal navigate into the project folder and type:
+```commandline
+docker run -it -v $PWD:/e2e -w /e2e cypress/included:8.7.0 --browser chrome
+```
+
+## How to run my project
+- Download my project from github
+- Prepare the system with the prerequisites(npm, docker, cypress)
+- Run the test with the application or from terminal as I advised above.
 
 ## Containerization
 For this I am using Docker
 
-- docker-compose.yml
-  - In this file we can write configuration about how to want to run our project
+- docker-compose.yml file in the project
+  - In this file we can write configuration about how do we want to run our project
   - How to run a project with docker:
-    - Go into the project folder
-    - "docker compose up"
+    - Go into the project folder and type:
+    - ```commandline
+       docker-compose up --exit-code-from cypress
+      ```
+    - This will mount the given docker file and start the project with the given configuration in the 'docker-compose.yml' file
 
 ### How to create docker image file
-- With this functionality I can create my own docker image so everybody cna run the same project on each machine 
+- With this functionality I can create my own docker image so everybody can run the same project on each machine 
 
 How to create image with terminal:
 - Go into he project folder
@@ -87,6 +117,12 @@ How to create image with terminal:
 ```commandline
 docker build -t cypress-image-ig:1.1.0 .
 ```
+- After starting the image, the test will run with given configuration
+
+# Failures screenshot
+Cypress automatically captures failures and put the screenshots under the screenshots folder and make videos about the failure as well.
+
+This functionality is highly configurable. We can turn off or adjust the captured details in the cypress.json file.
 
 # BUG
 I get back 'fe43e6fb-f97b-4fd3-b549-5362a6db1016' error message if the username length is more than 50 character long
