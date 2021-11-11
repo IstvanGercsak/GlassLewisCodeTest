@@ -190,6 +190,8 @@ The cypress.env.json contains this:
   "video": false
 }
 ```
+# Test result
+![errorMessageBug](cypress/image/test_result.png)
 
 # Experiences with the website
 The biggest advantage is that the identifiable elements has id, so I could identify those easily.
