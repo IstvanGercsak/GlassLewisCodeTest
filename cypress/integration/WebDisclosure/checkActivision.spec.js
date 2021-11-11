@@ -7,10 +7,11 @@ describe("Code challenge 2021", () => {
     let meetingDetail = new meetingDetailPage();
 
     const testActivisionName = "Activision Blizzard Inc"
+    const testWebsite = Cypress.env('DemoWebsite')
 
     context('Tests', () => {
         beforeEach(() => {
-            cy.visit('https://viewpoint.glasslewis.com/WD/?siteId=DemoClient')
+            visitWebsite(testWebsite)
         })
 
         // Abstract test cases
@@ -24,6 +25,10 @@ describe("Code challenge 2021", () => {
     })
 
 // Functionalities
+
+    function visitWebsite(website) {
+        cy.visit(website)
+    }
 
     function searchBarShouldBeVisible() {
         demoClient.searchBarForCompany().should('be.visible')

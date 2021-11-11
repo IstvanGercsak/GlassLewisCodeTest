@@ -1,4 +1,7 @@
 {
+  "env": {
+    "DemoWebsite": "https://viewpoint.glasslewis.com/"
+  },
   "screenshotOnRunFailure": true,
-  "video": false
+  "video": true
 }

@@ -40,7 +40,7 @@
 
 # Question 2 - Automation (Answer)
 
-## Technology uses
+## Technology used
 - Cypress
 - JavaScript
 - Pycharm (IDEA)
@@ -54,11 +54,10 @@
   ```commandline
   docker pull cypress/included:8.7.0  
   ```
- - This includes two browsers(Chrome and Firefox) and the most important dependencies
+  - This includes two browsers(Chrome and Firefox) and the most important dependencies
 - With terminal go into the project folder and type
   - npm install --save-dev cypress 
-    - This will create a sample project for cypress
-    - I deleted the unused files
+    - This will create a sample project for cypress(I deleted the unused project files)
 ## How to run the project with different configuration
 
 ### How to run the project with Cypress
@@ -94,7 +93,7 @@ docker run -it -v $PWD:/e2e -w /e2e cypress/included:8.7.0 --browser chrome
 ## How to run my project
 - Download my project from github
 - Prepare the system with the prerequisites(npm, docker, cypress)
-- Run the test with the application or from terminal as I advised above.
+- Run the test project with the application or from terminal as I advised above.
 
 ## Containerization
 For this I am using Docker
@@ -123,6 +122,35 @@ docker build -t cypress-image-ig:1.1.0 .
 Cypress automatically captures failures and put the screenshots under the screenshots folder and make videos about the failure as well.
 
 This functionality is highly configurable. We can turn off or adjust the captured details in the cypress.json file.
+
+# Environmental variables
+
+This file could contain configuration setting, such as websites, etc.
+
+Cypress will check My own cypress.env.json file, and it will overwrite conflicting environment variables in my configuration file (cypress.json by default).
+
+Usually the cypress.env.json file should be in the .gitignore in order to avoid clashes. But for now for the sake of this demo and test I included
+
+In this case the env file will overwrite the original cypress.json fule
+
+The cypress.json contains this:
+```json
+{
+  "env": {
+    "DemoWebsite": "https://viewpoint.glasslewis.com/"
+  },
+  "screenshotOnRunFailure": false,
+  "video": true
+}
+```
+The cypress.env.json contains this:
+```json
+{
+  "DemoWebsite": "https://viewpoint.glasslewis.com/WD/?siteId=DemoClient",
+  "screenshotOnRunFailure": true,
+  "video": false
+}
+```
 
 # BUG
 I get back 'fe43e6fb-f97b-4fd3-b549-5362a6db1016' error message if the username length is more than 50 character long
