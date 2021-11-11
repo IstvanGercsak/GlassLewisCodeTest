@@ -58,41 +58,52 @@
 - With terminal go into the project folder and type
   - npm install --save-dev cypress 
     - This will create a sample project for cypress(I deleted the unused project files)
+
 ## How to run the project with different configuration
 
 ### How to run the project with Cypress
-1.) Desktop application
+Desktop application
 - Download the cypress application from the official website
 - Open the project with the application
 
-2.) With npm and commandline
-- With the terminal navigate into the project folder
-- type the following, and it will open the cypress application:
-```commandline
-npx cypress run
-```
+### Run the project with docker
+**Before these runs we need to open the docker application**
 
 ### How to run the project with headless mode
-- With the terminal navigate into the project folder and type:
+With the terminal navigate into the project folder and type:
+- Mac:
 ```commandline
 docker run -it -v $PWD:/e2e -w /e2e cypress/included:8.7.0
 ```
-
+- Windows:
+```commandline
+docker run -it -v %cd%:/e2e -w /e2e cypress/included:8.7.0
+```
 ### How to run the project with Chrome
-- With the terminal navigate into the project folder and type:
+With the terminal navigate into the project folder and type:
+- Mac
 ```commandline
 docker run -it -v $PWD:/e2e -w /e2e cypress/included:8.7.0 --browser firefox
 ```
+- Windows
+```commandline
+docker run -it -v %cd%:/e2e -w /e2e cypress/included:8.7.0 --browser firefox
+```
 
 ### How to run the project with Firefox
-- With the terminal navigate into the project folder and type:
+With the terminal navigate into the project folder and type:
+- Mac
 ```commandline
 docker run -it -v $PWD:/e2e -w /e2e cypress/included:8.7.0 --browser chrome
 ```
-
+- Windows
+```commandline
+docker run -it -v %cd%:/e2e -w /e2e cypress/included:8.7.0 --browser chrome
+```
 ## How to run my project
-- Download my project from github
+- Download my project from GitHub
 - Prepare the system with the prerequisites(npm, docker, cypress)
+- Open the docker application
 - Run the test project with the application or from terminal as I advised above.
 
 ## Containerization

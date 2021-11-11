@@ -6,8 +6,8 @@ describe("Code challenge 2021", () => {
     let demoClient = new demoClientPage();
     let meetingDetail = new meetingDetailPage();
 
-    const testActivisionName = "Activision Blizzard Inc"
     const testWebsite = Cypress.env('DemoWebsite')
+    const testActivisionName = "Activision Blizzard Inc"
 
     context('Tests', () => {
         beforeEach(() => {
@@ -16,12 +16,13 @@ describe("Code challenge 2021", () => {
 
         // Abstract test cases
         it('Check Activision', () => {
-            searchBarShouldBeVisible()
-            clickInTheSearchBar()
-            searchCompany(testActivisionName)
-            clickOnFirstMatch();
+            searchBarForCompanyShouldBeVisible()
+            clickInTheCompanySearchBar()
+            searchCompanyInput(testActivisionName)
+            clickOnFirstCompanyMatch()
             landingOnTheClientMeetingPage(testActivisionName)
         })
+
     })
 
 // Functionalities
@@ -30,20 +31,20 @@ describe("Code challenge 2021", () => {
         cy.visit(website)
     }
 
-    function searchBarShouldBeVisible() {
+    function searchBarForCompanyShouldBeVisible() {
         demoClient.searchBarForCompany().should('be.visible')
     }
 
-    function clickInTheSearchBar() {
-        cy.get('#kendo-Search-for-company').click()
+    function clickInTheCompanySearchBar() {
+        demoClient.searchBarForCompany().click()
     }
 
-    function searchCompany(search) {
-        cy.get('#kendo-Search-for-company').type(search)
+    function searchCompanyInput(search) {
+        demoClient.searchBarForCompany().type(search)
     }
 
-    function clickOnFirstMatch() {
-        cy.get('#header-search-input-list').click()
+    function clickOnFirstCompanyMatch() {
+        demoClient.firstResultForCompanySearch().click()
     }
 
     function landingOnTheClientMeetingPage(companyName) {
