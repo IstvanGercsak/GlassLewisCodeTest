@@ -1,0 +1,11 @@
+version: '8.7'
+services:
+  cypress:
+    image: "cypress/included:8.7.0"
+    entrypoint: cypress
+    command: run
+    environment:
+      - CYPRESS_baseUrl=https://viewpoint.glasslewis.com/WD/?siteId=DemoClientPage
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e
