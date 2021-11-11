@@ -42,14 +42,31 @@ In the second section which is more technical, I explain my test automation proj
 
 # Question 2 - Automation (Answer)
 
-- Additional test plan
+- Additional test plan that could cover the site functionalities, but these are not relevant to the given scenarios
   - Test Languages(Grammar and alignment)
   - Date ranges (Update and Reset button)
   - Different countries (Update and Reset button)
   - Account name (Update and Reset button)
   - Pagination functionality
-  - Order functionality
-  - Testing on smaller devices sizes(tablet or phone)
+  - Sorting functionality
+  - Testing on smaller devices sizes(tablet or phone)(If required)
+
+Approaches:
+
+1.)Scenario:
+- I open the website with a browser
+- I type the "Belgium" word into the country filter 
+- I click on the update button.
+- I check the Country columns
+
+2.)Scenario:
+- I open the website with a browser
+- I type the given company name into the company search bar
+- I click on the first match
+- I check the company name on the meeting page
+
+In the case of both scenario I use the search functionality because it's not sure if the given country or company is available on the opening page.
+Also with this I can cover the searching functionalities.
 
 ## Technology used
 - Cypress
@@ -196,6 +213,9 @@ Screenshot:
 
 ## WD test page
 1. X sign is not aligned correctly
+
 ![searchBarAlign](cypress/bug/searchBarAlign.png)
+
 2. Back and forth buttons are slipped when I pick Nederland as a language
+
 ![paginationButtons](cypress/bug/paginationButtons.png)
