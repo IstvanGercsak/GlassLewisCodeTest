@@ -60,32 +60,32 @@ In the second section which is more technical, I explain my test automation proj
 # Architecture and test case approaches
 However, we can approach the test cases differently, for this project I used a very abstract form.
 It means that the test steps are readable by human and the technical parts were put in different files and functions.
-- With the POM(Page Object Model) approach I saved the element details under the element/pages folder. The biggest advantage for this approach is that if an element location or name changes we just have to change is in one place.
+- With the POM(Page Object Model) approach I saved the element details under the element/pages folder. The biggest advantage for this approach is that if an element location or name changes we just have to change it in one place.
 - In the integration/WebDisclosure folder I separated the test spec files based on the functionalities(search by company, search by country).
+- The test cases are E2E processes which mimics the two given scenarios
 
 ## Prerequisite:
 - Install nodejs and npm from the official website
 - Install docker from the official website
 - Open the docker application
   - pull down the latest cypress image
-  ```commandline
+```commandline
   docker pull cypress/included:8.7.0  
-  ```
+  ``` 
   - This includes two browsers(Chrome and Firefox) and the most important dependencies
-- With terminal go into the project folder and type
-  - npm install --save-dev cypress 
-    - This will create a sample project for cypress(I deleted the unused project files)
-
-## How to run the project with different configuration
-
+  
+## How to run my project with different configuration
+- Download my project from GitHub
+- Prepare the system with the prerequisites(npm, docker, cypress)
+- Open the docker application
+- Open a terminal and navigate into the project folder
+- Run the test project with the application or from terminal as I advised below.
 ### How to run the project with Cypress
 Desktop application
 - Download the cypress application from the official website
 - Open the project with the application
 
-### Run the project with docker
-**Before these runs we need to open the docker application**
-
+**Before the following runs we need to open the docker application**
 ### How to run the project with headless mode
 With the terminal navigate into the project folder and type(Default browser is Chrome):
 - Mac:
@@ -117,11 +117,6 @@ docker run -it -v $PWD:/e2e -w /e2e cypress/included:8.7.0 --browser chrome
 ```commandline
 docker run -it -v %cd%:/e2e -w /e2e cypress/included:8.7.0 --browser chrome
 ```
-## How to run my project
-- Download my project from GitHub
-- Prepare the system with the prerequisites(npm, docker, cypress)
-- Open the docker application
-- Run the test project with the application or from terminal as I advised above.
 
 ## Containerization
 For this I am using Docker
@@ -192,7 +187,7 @@ I get back 'fe43e6fb-f97b-4fd3-b549-5362a6db1016' error message if the username 
   - test
 
 Screenshot:
-![alt text](cypress/bug/errorMessageBug.png)
+![errorMessageBug](cypress/bug/errorMessageBug.png)
 
 - Solution: Set a hardcoded length for Username in the HTML code like this:
 ```HTML
@@ -201,6 +196,6 @@ Screenshot:
 
 ## WD test page
 1. X sign is not aligned correctly
-![alt text](cypress/bug/searchBarAlign.png)
+![searchBarAlign](cypress/bug/searchBarAlign.png)
 2. Back and forth buttons are slipped when I pick Nederland as a language
-![alt text](cypress/bug/paginationButtons.png)
+![paginationButtons](cypress/bug/paginationButtons.png)
