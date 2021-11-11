@@ -3,5 +3,5 @@
     "DemoWebsite": "https://viewpoint.glasslewis.com/"
   },
   "screenshotOnRunFailure": true,
-  "video": true
+  "video": false
 }

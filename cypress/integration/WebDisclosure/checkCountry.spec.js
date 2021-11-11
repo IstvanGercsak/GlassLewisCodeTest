@@ -2,7 +2,7 @@ import demoClientPage from "../../elements/pages/demoClientPage";
 
 describe("Code challenge 2021", () => {
 
-    let demoClient = new demoClientPage();
+    const demoClient = new demoClientPage();
     const testWebsite = Cypress.env('DemoWebsite')
     const testCountry = "Belgium"
 
@@ -12,7 +12,6 @@ describe("Code challenge 2021", () => {
         })
 
         // Abstract test cases
-
         it('Check Companies from Belgium', function () {
             searchBarForCountryShouldBeVisible()
             clickInTheCountrySearchBar()
@@ -48,6 +47,20 @@ describe("Code challenge 2021", () => {
     }
 
     function tableContainsCountry(country) {
-        cy.get('table').contains('td', country)
+        cy.get('table').should('be.visible').contains('td', country)
+        cy.get('table>tbody>tr')
+            .each(function ($row) {
+                    cy.wrap($row).within(function () {
+                        cy.get('td')
+                            .each(function ($cellData, index) {
+                                // Country is in the 6. Columns with the index of 5
+                                if (index === 5) {
+                                    expect($cellData.text()).equal(country)
+                                }
+                            })
+                    })
+                }
+            )
+
     }
 })

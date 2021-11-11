@@ -3,9 +3,8 @@ import meetingDetailPage from "../../elements/pages/meetingDetailPage";
 
 describe("Code challenge 2021", () => {
 
-    let demoClient = new demoClientPage();
-    let meetingDetail = new meetingDetailPage();
-
+    const demoClient = new demoClientPage();
+    const meetingDetail = new meetingDetailPage();
     const testWebsite = Cypress.env('DemoWebsite')
     const testActivisionName = "Activision Blizzard Inc"
 
@@ -26,7 +25,6 @@ describe("Code challenge 2021", () => {
     })
 
 // Functionalities
-
     function visitWebsite(website) {
         cy.visit(website)
     }

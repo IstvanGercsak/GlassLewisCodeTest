@@ -1,6 +1,8 @@
 # Glass Lewis Code Challenge 2021
 
 # Introduction
+In this project I answered for the 1. interview question where I had to write user story description and acceptance criteria for a given scenario.
+In the second section which is more technical, I explain my test automation project.
 
 # Question 1 - Requirements (Answer)
 ## Description:
@@ -40,16 +42,31 @@
 
 # Question 2 - Automation (Answer)
 
+- Additional test plan
+  - Test Languages(Grammar and alignment)
+  - Date ranges (Update and Reset button)
+  - Different countries (Update and Reset button)
+  - Account name (Update and Reset button)
+  - Pagination functionality
+  - Order functionality
+  - Testing on smaller devices sizes(tablet or phone)
+
 ## Technology used
 - Cypress
 - JavaScript
 - Pycharm (IDEA)
 - Docker
 
-## Prerequisite:
+# Architecture and test case approaches
+However, we can approach the test cases differently, for this project I used a very abstract form.
+It means that the test steps are readable by human and the technical parts were put in different files and functions.
+- With the POM(Page Object Model) approach I saved the element details under the element/pages folder. The biggest advantage for this approach is that if an element location or name changes we just have to change is in one place.
+- In the integration/WebDisclosure folder I separated the test spec files based on the functionalities(search by company, search by country).
 
+## Prerequisite:
 - Install nodejs and npm from the official website
 - Install docker from the official website
+- Open the docker application
   - pull down the latest cypress image
   ```commandline
   docker pull cypress/included:8.7.0  
@@ -70,7 +87,7 @@ Desktop application
 **Before these runs we need to open the docker application**
 
 ### How to run the project with headless mode
-With the terminal navigate into the project folder and type:
+With the terminal navigate into the project folder and type(Default browser is Chrome):
 - Mac:
 ```commandline
 docker run -it -v $PWD:/e2e -w /e2e cypress/included:8.7.0
@@ -135,14 +152,13 @@ Cypress automatically captures failures and put the screenshots under the screen
 This functionality is highly configurable. We can turn off or adjust the captured details in the cypress.json file.
 
 # Environmental variables
-
 This file could contain configuration setting, such as websites, etc.
 
 Cypress will check My own cypress.env.json file, and it will overwrite conflicting environment variables in my configuration file (cypress.json by default).
 
 Usually the cypress.env.json file should be in the .gitignore in order to avoid clashes. But for now for the sake of this demo and test I included
 
-In this case the env file will overwrite the original cypress.json fule
+In this case the env file will overwrite the original cypress.json file
 
 The cypress.json contains this:
 ```json
@@ -163,7 +179,12 @@ The cypress.env.json contains this:
 }
 ```
 
+# Experiences with the website
+The biggest advantage is that the identifiable elements has id, so I could identify those easily.
+The hardest part was to test the specific data in the table.
+
 # BUG
+## Viewpoint page
 I get back 'fe43e6fb-f97b-4fd3-b549-5362a6db1016' error message if the username length is more than 50 character long
 - Username:
   - testtesttesttesttesttesttesttesttesttesttesttesttest
@@ -175,5 +196,11 @@ Screenshot:
 
 - Solution: Set a hardcoded length for Username in the HTML code like this:
 ```HTML
-<input name="Username" type="text" id="username" value="" class="loginCtrl" maxlength="10">
+<input name="Username" type="text" id="username" value="" class="loginCtrl" maxlength="40">
 ```
+
+## WD test page
+1. X sign is not aligned correctly
+![alt text](cypress/bug/searchBarAlign.png)
+2. Back and forth buttons are slipped when I pick Nederland as a language
+![alt text](cypress/bug/paginationButtons.png)
